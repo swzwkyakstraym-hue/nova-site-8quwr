@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>متجر زين - ZAIN STORE</title>
+    <meta name="description" content="متجر زين for men's fashion, watches & accessories">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&family=Cairo:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loadingScreen" class="loading-screen">
+        <div class="loader">
+            <div class="spinner"></div>
+            <p>ZAIN STORE</p>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header id="header" class="header">
+        <div class="container">
+            <div class="logo">ZAIN<span>.</span></div>
+            <nav class="nav-menu">
+                <a href="#/home" class="nav-link">الصفحة الرئيسية</a>
+                <a href="#/products" class="nav-link">الproducts</a>
+                <a href="#/categories" class="nav-link">الفئات</a>
+                <a href="#/deals" class="nav-link">الصفقات</a>
+                <a href="#/about" class="nav-link">من نحن</a>
+                <a href="#/contact" class="nav-link">اتصال</a>
+            </nav>
+            <div class="header-actions">
+                <button id="themeToggle" class="theme-toggle" aria-label="Change Theme">🌙</button>
+                <button id="langToggle" class="lang-toggle">EN/AR</button>
+                <button id="searchBtn" class="search-btn">🔍</button>
+                <button id="cartBtn" class="cart-btn">🛒 <span id="cartCount">0</span></button>
+                <button id="userBtn" class="user-btn">👤</button>
+            </div>
+            <div class="mobile-menu">
+                <button id="mobileMenuBtn">☰</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Command Palette -->
+    <div id="commandPalette" class="command-palette">
+        <div class="command-content">
+            <input type="text" id="commandInput" placeholder="البحث... Search...">
+            <div id="commandResults"></div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main id="app">
+        <!-- Home Page -->
+        <section id="home" class="page active">
+            <div class="hero">
+                <canvas id="heroCanvas"></canvas>
+                <div class="hero-content">
+                    <h1 class="hero-title">زين للرجل العصري</h1>
+                    <p class="hero-subtitle">أناقة تبدأ من هنا | Elegance begins here</p>
+                    <div class="hero-buttons">
+                        <a href="#/products" class="btn btn-primary">تسوق الآن</a>
+                        <a href="#/deals" class="btn btn-secondary">الصفقات</a>
+                </div>
+            </div>
+
+            <section class="section">
+                <div class="container">
+                    <h2 class="section-title">الفئات المميزة</h2>
+                    <div class="categories-grid">
+                        <div class="category-card" data-category="clothing">
+                            <div class="cat-icon">👔</div>
+                            <h3>الملابس</h3>
+                            <p>فساتين، قطع، وبلوزات</p>
+                        </div>
+                        <div class="category-card" data-category="watches">
+                            <div class="cat-icon">⌚</div>
+                            <h3>الساعات</h3>
+                            <p>ساعات فاخرة وأصلية</p>
+                        </div>
+                        <div class="category-card" data-category="accessories">
+                            <div class="cat-icon">🎒</div>
+                            <h3>الإكسسوارات</h3>
+                            <p>أحزمت، نظارات، مaccessories</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <div class="container">
+                    <h2 class="section-title">الproducts المميزة</h2>
+                    <div class="products-grid" id="featuredProducts"></div>
+                </div>
+            </section>
+
+            <section class="section">
+                <div class="container">
+                    <h2 class="section-title">trusted</h2>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <span class="stat-number" data-count="5000">0</span>
+                            <span class="stat-label">عميل راضي</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" data-count="200">0</span>
+                            <span class="stat-label">product عالمي</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" data-count="50">0</span>
+                            <span class="stat-label">سنة خبرة</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <!-- Products Page -->
+        <section id="products" class="page">
+            <div class="container">
+                <div class="page-header">
+                    <h1>جميع الproducts</h1>
+                    <div class="filters">
+                        <select id="categoryFilter">
+                            <option value="all">جميع الفئات</option>
+                            <option value="clothing">الملابس</option>
+                            <option value="watches">الساعات</option>
+                            <option value="accessories">الإكسسوارات</option>
+                        </select>
+                        <input type="range" id="priceRange" min="0" max="5000" value="5000">
+                        <span id="priceValue">حتى 5000 XL</span>
+                        <select id="sortBy">
+                            <option value="default">الترتيب الافتراضي</option>
+                            <option value="price-low">السعر: منخفض إلى مرتفع</option>
+                            <option value="price-high">السعر: مرتفع إلى منخفض</option>
+                            <option value="name">الاسم أ-ي</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="products-grid" id="allProducts"></div>
+            </div>
+        </section>
+
+        <!-- Product Detail Page -->
+        <section id="product-detail" class="page">
+            <div class="container">
+                <div class="product-detail-grid">
+                    <div class="product-gallery">
+                        <div class="main-image">📷</div>
+                        <div class="thumbnail-gallery">
+                            <div class="thumb active">📷</div>
+                            <div class="thumb">⌚</div>
+                            <div class="thumb">🎒</div>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h1 id="pdName">اسم الproduct</h1>
+                        <div class="price">XL <span id="pdPrice">0</span></div>
+                        <div class="rating">⭐⭐⭐⭐☆ 4.5/5</div>
+                        <p class="description" id="pdDescription">وصف الproduct...</p>
+                        <div class="quantity-selector">
+                            <button class="qty-btn">-</button>
+                            <input type="number" value="1" min="1">
+                            <button class="qty-btn">+</button>
+                        </div>
+                        <div class="product-actions">
+                            <button class="btn btn-primary add-to-cart">أضف إلى السلة</button>
+                            <button class="btn btn-secondary add-to-favorite">❤️ المفضلة</button>
+                            <button class="btn btn-secondary buy-now">اشتري الآن</button>
+                        </div>
+                        <div class="coupon-section">
+                            <input type="text" id="couponInput" placeholder="كوبون خصم">
+                            <button id="applyCoupon">تطبيق</button>
+                            <span id="couponMessage"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Categories Page -->
+        <section id="categories" class="page">
+            <div class="container">
+                <h1>الفئات</h1>
+                <div class="category-showcase">
+                    <div class="category-showcase-item clothing">
+                        <h2>الملابس</h2>
+                        <p>أفضل الأزياء worldwide</p>
+                        <a href="#/products?category=clothing">عرض جميع products</a>
+                    </div>
+                    <div class="category-showcase-item watches">
+                        <h2>الساعات</h2>
+                        <p>الدقة والرقي</p>
+                        <a href="#/products?category=watches">عرض جميع products</a>
+                    </div>
+                    <div class="category-showcase-item accessories">
+                        <h2>الإكسسوارات</h2>
+                        <p>لتكمل أسلوبك</p>
+                        <a href="#/products?category=accessories">عرض جميع products</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Deals Page -->
+        <section id="deals" class="page">
+            <div class="container">
+                <h1>الصفقات</h1>
+                <div class="deals-banner">
+                    <h2> upto 50% OFF</h2>
+                    <p>offers limited time</p>
+                </div>
+                <div class="products-grid" id="dealsProducts"></div>
+            </div>
+        </section>
+
+        <!-- About Page -->
+        <section id="about" class="page">
+            <div class="container">
+                <h1>من نحن</h1>
+                <div class="about-content">
+                    <div class="about-text">
+                        <h2>قصة زين</h2>
+                        <p>started in 2010, ZAIN Store has become a leading destination for men's fashion worldwide. We combine traditional craftsmanship with modern design to create timeless pieces.</p>
+                        <p>Our mission is to empower every man to express his unique style with confidence and sophistication.</p>
+                        <div class="about-stats">
+                            <div class="stat"><strong>50+</strong><span>سنة</span></div>
+                            <div class="stat"><strong>5000+</strong><span>عميل</span></div>
+                            <div class="stat"><strong>200+</strong><span>product</span></div>
+                        </div>
+                    </div>
+                    <div class="about-image">📈</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Page -->
+        <section id="contact" class="page">
+            <div class="container">
+                <h1>اتصال</h1>
+                <div class="contact-grid">
+                    <form class="contact-form">
+                        <input type="text" placeholder="الاسم" required>
+                        <input type="email" placeholder="البريد الإلكتروني" required>
+                        <textarea placeholder="الرسالة" rows="5" required></textarea>
+                        <button type="submit" class="btn btn-primary">أرسل الرسالة</button>
+                    </form>
+                    <div class="contact-info">
+                        <h3>المعلومات</h3>
+                        <p>📧 info@zainstore.com</p>
+                        <p>📞 +966 123 456 789</p>
+                        <p>📍 Riyadh, Saudi Arabia</p>
+                        <div class="social-links">
+                            <a>📷</a>
+                            <a>🐦</a>
+                            <a>📘</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer id="footer" class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <h3>ZAIN STORE</h3>
+                    <p>أناقة للرجل العصري | Elegance for the modern man</p>
+                </div>
+                <div class="footer-links">
+                    <h4>روابط سريعة</h4>
+                    <a href="#/home">الصفحة الرئيسية</a>
+                    <a href="#/products">الproducts</a>
+                    <a href="#/deals">الصفقات</a>
+                    <a href="#/about">من نحن</a>
+                </div>
+                <div class="footer-contact">
+                    <h4>اتصال</h4>
+                    <p>📧 info@zainstore.com</p>
+                    <p>📞 +966 123 456 789</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 ZAIN STORE. جميع الحقوق محفوظة.</p>
+                <div class="language-switch">
+                    <button id="footerLangToggle">العربية / English</button>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Container -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <!-- Cart Sidebar -->
+    <div id="cartSidebar" class="cart-sidebar">
+        <div class="cart-header">
+            <h3>سلة الشراء</h3>
+            <button id="closeCart">✕</button>
+        </div>
+        <div class="cart-items"></div>
+        <div class="cart-footer">
+            <div class="cart-total">الإجمالي: <span id="cartTotal">0 XL</span></div>
+            <button class="btn btn-primary checkout-btn">إتمام الشراء</button>
+        </div>
+    </div>
+
+    <!-- User Auth Modal -->
+    <div id="authModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="auth-tabs">
+                <button class="auth-tab active" data-tab="login"> تسجيل الدخول</button>
+                <button class="auth-tab" data-tab="register"> accounts</button>
+            </div>
+            <div class="auth-form-container">
+                <!-- Login Form -->
+                <form id="loginForm" class="auth-form active">
+                    <input type="email" placeholder="البريد الإلكتروني" required>
+                    <input type="password" placeholder="كلمة المرور" required>
+                    <button type="submit" class="btn btn-primary">دخول</button>
+                </form>
+                <!-- Register Form -->
+                <form id="registerForm" class="auth-form">
+                    <input type="text" placeholder="الاسم" required>
+                    <input type="email" placeholder="البريد الإلكتروني" required>
+                    <input type="password" placeholder="كلمة المرور" required>
+                    <input type="password" placeholder="تأكيд كلمة المرور" required>
+                    <button type="submit" class="btn btn-primary">accounts</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Back to Top -->
+    <button id="backToTop" class="back-to-top">↑</button>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
